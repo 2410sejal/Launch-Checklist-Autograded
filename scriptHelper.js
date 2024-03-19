@@ -57,12 +57,14 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         validateInput(copilot) ==="Empty"||
         validateInput(fuelLevel) === "Empty"||
         validateInput(cargoLevel) ==="Empty") {
+            readyToLaunch = false
         alert("All Feilds Are Required!");
         }
         if(validateInput(pilot) ==="Is a Number"|| 
         validateInput(copilot) ==="Is a Number"||
         validateInput(fuelLevel) === "Not a Number"||
         validateInput(cargoLevel) ==="Not a Number") {
+            readyToLaunch = false
         alert("Make sure to enter valid information for each feild!");
         }else {
          pilotStatusUpdate.innerHTML = `Pilot ${pilot} is ready for launch`;
@@ -85,9 +87,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
             launchStatus.style.color = 'red';
             readyToLaunch = false;
          }
-    
         }
-    
         if(readyToLaunch) {
             launchStatus.innerHTML= 'Shuttle is Ready for Launch.';
             launchStatus.style.color ='green';
@@ -99,30 +99,30 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  async function myFetch() {
      let planetsReturned;
  
-     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-       return response.json()
+     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+       return response.json();
         });
  
      return planetsReturned;
  }
  
  function pickPlanet(planets) {
-   let index = Math.floor(Math.random() * planets.length);
+   let index = Math.floor(Math.random()*planets.length);
    return planets[index];
     };
 
  
  
- 
-//  module.exports.validateInput = validateInput;
-//  module.exports.formSubmission = formSubmission;
-//  module.exports.pickPlanet = pickPlanet; 
-//  module.exports.myFetch = myFetch;
-//  module.exports.addDestinationInfo = addDestinationInfo;
-module.exports = {
-    addDestinationInfo: addDestinationInfo,
-    validateInput: validateInput,
-    formSubmission: formSubmission,
-    pickPlanet: pickPlanet,
-    myFetch: myFetch
-}
+ module.exports.addDestinationInfo = addDestinationInfo;
+ module.exports.validateInput = validateInput;
+ module.exports.formSubmission = formSubmission;
+ module.exports.pickPlanet = pickPlanet; 
+ module.exports.myFetch = myFetch;
+
+// module.exports = {
+//     addDestinationInfo: addDestinationInfo,
+//     validateInput: validateInput,
+//     formSubmission: formSubmission,
+//     pickPlanet: pickPlanet,
+//     myFetch: myFetch
+// }
